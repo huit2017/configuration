@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# GITのインストール
-sudo yum -y install git
-
 # ansible インストール
 epel_file="epel-release-7-9.noarch.rpm"
 sudo yum -y install wget

@@ -9,5 +9,5 @@ git clone git@github.com:huit2017/configuration.git
 cd configuration/
 sh init.sh
 cd ansible
-ansible-playbook -i other site.yml
+ansible-playbook -i other other.yml
 ```

@@ -1,0 +1,5 @@
+- name: インストール
+  yum: name=httpd state=latest
+
+- name:
+  service: name=httpd state=started enabled=yes

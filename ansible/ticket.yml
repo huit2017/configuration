@@ -1,0 +1,10 @@
+- name: Ticketサーバー(Readmine)の構築
+  hosts: ticket
+  become: yes
+  roles:
+    - git
+    - apache
+    - mysql
+    #- ruby
+    #- passenger
+    #- readmine

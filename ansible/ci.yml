@@ -1,0 +1,9 @@
+- name: CIサーバー(Jenkins)の構築
+  hosts: ci
+  become: yes
+  roles:
+    - java
+    - tomcat
+    - jenkins
+    - git
+

@@ -1,0 +1,12 @@
+#- name: 存在確認
+#  stat: path=/usr/local/tomcat
+#  register: exists
+
+- name: デバッグ - 存在確認
+  debug: var={{reinstall}}
+
+- name: 存在確認
+  debug: var={{reinstall}}
+  tags: 
+    - eee
+

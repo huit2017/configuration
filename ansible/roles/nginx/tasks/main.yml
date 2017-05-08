@@ -1,0 +1,58 @@
+- name: ユーザーの作成
+  user: name=nginx
+
+- name: モジュールインストール
+  yum: name={{item}} state=latest
+  with_items:
+    - openssl
+    - openssl-devel
+    - gcc
+    - pcre
+    - pcre-devel
+    - zlib
+    - zlib-devel
+
+- name: 存在確認
+  stat: path=/usr/local/nginx
+  register: exists
+
+- name: 既存のディレクトリ削除
+  file: path=/usr/local/nginx state=absent 
+  when: not exists.stat.exists
+
+- name: ダウンロード
+  get_url:
+    url=https://nginx.org/download/nginx-1.12.0.tar.gz
+    dest=/usr/local/src/nginx-1.12.0.tar.gz
+
+- name: 解凍
+  unarchive: src=/usr/local/src/nginx-1.12.0.tar.gz dest=/usr/local/src/ copy=no
+
+- name: ダウンロード - レスポンスヘッダー隠蔽用
+  get_url:
+    url=https://github.com/openresty/headers-more-nginx-module/archive/v0.32.tar.gz
+    dest=/usr/local/src/v0.32.tar.gz
+
+- name: 解凍 - レスポンスヘッダー隠蔽用
+  unarchive: src=/usr/local/src/v0.32.tar.gz dest=/usr/local/src/ copy=no
+
+- name: ./configure -> make -> make install
+  shell: >
+    cd /usr/local/src/nginx-1.12.0 &&
+    ./configure --user=nginx --group=nginx --with-http_realip_module --with-http_ssl_module --with-http_v2_module --add-dynamic-module=/usr/local/src/headers-more-nginx-module-0.32 &&
+    make &&
+    make install
+
+- name: ファイルのオーナー変更
+  file: dest=/usr/local/nginx owner=nginx recurse=yes
+
+- name: 自動起動ファイルの設定
+  template: src=etc/init.d/nginx dest=/etc/init.d/nginx mode=755
+
+- name: 自動起動登録を有効化
+  #service: name=nginx state=started enabled=yes
+  shell: chkconfig nginx on
+
+- name: 起動
+  shell: sh -c 'nginx -t && systemctl restart nginx.service || systemctl status nginx.service -l' &
+ # shell: service nginx start

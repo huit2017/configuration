@@ -1,0 +1,2 @@
+- name: インストール
+  yum: name=git state=latest

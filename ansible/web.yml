@@ -1,0 +1,5 @@
+- name: WEBサーバー(Nginx)の構築
+  hosts: web
+  become: yes
+  roles:
+    - {role: nginx, tags: ["source_build", "nginx"]} 

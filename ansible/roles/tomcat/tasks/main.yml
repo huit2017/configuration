@@ -1,0 +1,44 @@
+- name: ユーザーの作成
+  user: name=tomcat
+
+#- name: 既存のディレクトリ削除
+#  file: path=/usr/local/tomcat state=absent 
+  #when: target == 'reinstall'
+
+- name: 存在確認
+  stat: path=/usr/local/tomcat
+  register: exists
+
+- name: デバッグ - 存在確認
+  debug: var=exists
+
+- name: ダウンロード
+  get_url:
+    url=http://ftp.riken.jp/net/apache/tomcat/tomcat-8/v8.0.43/bin/apache-tomcat-8.0.43.tar.gz
+    dest=/usr/local/src/apache-tomcat-8.0.43.tar.gz
+  when: not exists.stat.exists  
+
+- name: 解凍
+  unarchive: src=/usr/local/src/apache-tomcat-8.0.43.tar.gz dest=/usr/local/src/ copy=no
+  when: not exists.stat.exists  
+
+- name: ディレクトリに移動
+  shell: mv /usr/local/src/apache-tomcat-8.0.43 /usr/local/tomcat
+  when: not exists.stat.exists  
+
+- name: ファイルのオーナー変更
+  file: dest=/usr/local/tomcat owner=tomcat recurse=yes
+  when: not exists.stat.exists  
+
+- name: 自動起動ファイルの設定
+  template: src=etc/systemd/system/tomcat.service dest=/etc/systemd/system/tomcat.service owner=tomcat mode=755
+  when: not exists.stat.exists  
+
+- name: service,自動起動を有効化
+  systemd:
+    name: tomcat
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: yes
+  when: not exists.stat.exists  

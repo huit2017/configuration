@@ -1,3 +1,4 @@
-- include: ticket.yml
-# - include: ci.yml
+- include: web.yml
+#- include: app.yml
+#- include: db.yml
 

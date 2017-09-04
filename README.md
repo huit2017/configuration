@@ -1,13 +1,9 @@
 # configuration
 
-## チケット管理ツール(Redmine)、CI(Jenkins)サーバーの構成管理
+## 各サーバーの構成管理
 
-事前にgitの秘密鍵を.ssh/id_rsaに設定しておく
+作成済みの公開鍵をコピーする
 ```
-sudo yum -y install git
-git clone git@github.com:huit2017/configuration.git
-cd configuration/
-sh init.sh
-cd ansible
-ansible-playbook -i other other.yml
+ssh-copy-id [HOST]
 ```
+Jenkinsにて構成管理を設定する

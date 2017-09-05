@@ -1,3 +1,0 @@
-- name: war ダウンロード
-  get_url: url=http://mirrors.jenkins.io/war-stable/latest/jenkins.war dest=/usr/local/tomcat/webapps/jenkins.war
-

@@ -1,4 +1,6 @@
-- name: open JDK install
+---
+# roles/java/tasks/main.yml 
+- name: open JDK
   yum: name=java-1.8.0-openjdk state=latest
 
 - name: set java path

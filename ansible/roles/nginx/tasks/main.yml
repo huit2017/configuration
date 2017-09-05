@@ -1,3 +1,5 @@
+---
+roles/nginx/tasks/main.yml
 - name: ユーザーの作成
   user: name=nginx
 

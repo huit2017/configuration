@@ -1,0 +1,7 @@
+---
+# NoSQL Server
+- name: NoSQL Server
+  hosts: nosql
+  become: yes
+  roles: 
+    - redis

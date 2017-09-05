@@ -1,5 +1,7 @@
-- name: WEBサーバー(Nginx)の構築
+---
+# web.yml
+- name: Web Server
   hosts: web
   become: yes
   roles:
-    - {role: nginx, tags: ["source_build", "nginx"]} 
+    - apache

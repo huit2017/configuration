@@ -1,0 +1,7 @@
+---
+# app.yml
+- name: Application Server
+  hosts: app
+  become: yes
+  roles:
+    - tomcat

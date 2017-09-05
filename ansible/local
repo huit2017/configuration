@@ -1,0 +1,17 @@
+[web]
+192.168.33.11
+
+[app]
+192.168.33.11
+
+[db-m]
+192.168.33.11
+
+[nosql-m]
+192.168.33.11
+
+[db:children]
+db-m
+
+[nosql:children]
+nosql-m

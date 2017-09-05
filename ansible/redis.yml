@@ -1,5 +1,0 @@
-- name: redisの構築
-  hosts: redis
-  become: yes
-  roles: 
-    - redis

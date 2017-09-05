@@ -1,4 +1,6 @@
-- name: ユーザーの作成
+---
+# roles/tomcat/tasks/main.yml
+- name: create tomcat user
   user: name=tomcat
 
 #- name: 既存のディレクトリ削除

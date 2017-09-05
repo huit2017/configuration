@@ -1,28 +1,11 @@
-- name:  レポジトリの登録
-  yum:
-    name: http://dev.mysql.com/get/mysql57-community-release-el6-7.noarch.rpm
-    state: present
-
-- name: インストール
-  yum:
-    name: "{{item}}"
-    state: latest
-    enablerepo: mysql56-community
-    disablerepo: mysql57-community
-    state: present
-  with_items: 
-    - mysql-community-server
-    - mysql-community-client
-    - mysql-community-common
-    - mysql-community-libs
-    - mysql-community-libs-compat
+---
+# roles/mysql/tasks/main.yml
+- name: install mysql
+  yum: name={{item}} state=latest
+  with_items:
+    - libselinux-python
     - MySQL-python
-
-- name: 起動
+    - mariadb-server
+    - mariadb
+- name: start mysql and enabled
   service: name=mysqld state=started enabled=yes
-
-- name: DBの作成
-  mysql_db: name={{db}} state=present
-
-- name: ユーザーの作成
-  mysql_user: name={{user}} password={{password}} priv={{db}}.*:ALL state=present

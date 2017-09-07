@@ -1,11 +1,15 @@
 ---
 # roles/mysql/tasks/main.yml
+
+- name: add repo
+  yum: name=https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm state=present
+
 - name: install mysql
   yum: name={{item}} state=latest
   with_items:
     - libselinux-python
     - MySQL-python
-    - mariadb-server
-    - mariadb
+    - mysql-community-server
+
 - name: start mysql and enabled
   service: name=mysqld state=started enabled=yes

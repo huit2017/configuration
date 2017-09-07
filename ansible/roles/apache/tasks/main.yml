@@ -1,5 +1,6 @@
 ---
 # roles/apache/tasks/main.yml
+
 - name: install apache
   yum: name=httpd state=latest
 

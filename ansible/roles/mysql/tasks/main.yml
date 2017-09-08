@@ -1,5 +1,5 @@
 ---
-# roles/mysql/tasks/main.yml
+# file: roles/mysql/tasks/main.yml
 
 - name: add repo
   yum: name=https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm state=present

@@ -1,5 +1,5 @@
 ---
-# roles/java/tasks/main.yml 
+# file: roles/java/tasks/main.yml 
 
 - name: open JDK
   yum: name=java-1.8.0-openjdk state=latest

@@ -1,5 +1,5 @@
 ---
-# roles/redis/tasks/main.yml
+# file: roles/redis/tasks/main.yml
 
 #- name: 存在確認
 #  stat: path=/usr/local/tomcat

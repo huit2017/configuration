@@ -1,5 +1,5 @@
 ---
-# db.yum
+# file: db.yum
 - name: Database Server
   hosts: db
   become: yes

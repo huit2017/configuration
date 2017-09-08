@@ -1,5 +1,6 @@
 ---
-# NoSQL Server
+# file: nosql.yum
+
 - name: NoSQL Server
   hosts: nosql
   become: yes

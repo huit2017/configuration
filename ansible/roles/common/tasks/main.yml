@@ -1,5 +1,7 @@
 ---
-# roles/common/tasks/main.yml
+# file: roles/common/tasks/main.yml
 
-- name: install libselinux-python
-  yum: name=libselinux-python state=latest
+- name: upgrade all packages
+  yum: name=name=* state=latest
+
+# -include: zabbix.yum 

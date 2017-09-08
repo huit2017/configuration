@@ -2,10 +2,9 @@
 # file: site.yml
 
 - include: mail.yml
-#- include: elk.yml
-#- include: web.yml
-#- include: app.yml
-#- include: db.yml
-#- include: nosql.yml
-#- include: 
+- include: elk.yml
+- include: web.yml
+- include: app.yml
+- include: db.yml
+- include: nosql.yml
 

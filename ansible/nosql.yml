@@ -5,4 +5,4 @@
   hosts: nosql
   become: yes
   roles: 
-    - redis
+    - memcached

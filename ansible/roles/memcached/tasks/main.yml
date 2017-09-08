@@ -1,0 +1,12 @@
+---
+# file: roles/memcached/tasks/main.yml
+
+- name: install memcached
+  yum: name={{item}} state=latest
+  with_items:
+    - libevent
+    - libevent-devel
+    - memcached
+
+- name: start memcached and enabled
+  service: name=memcached state=started enabled=yes

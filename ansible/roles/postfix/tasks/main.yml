@@ -1,0 +1,11 @@
+---
+# file: roles/mail/tasks/main.yml
+
+- name: install postfix
+  yum: name={{item}} state=latest
+  with_items:
+    - postfix
+    - cyrus-sasl
+
+- name: start postfix with auth
+  service: name=postfix state=started enabled=yes

@@ -1,0 +1,7 @@
+---
+# file: mail.yum
+- name: Mail Server
+  hosts: mail 
+  become: yes
+  roles: 
+    - postfix

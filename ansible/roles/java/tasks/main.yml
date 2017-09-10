@@ -1,8 +1,13 @@
 ---
 # file: roles/java/tasks/main.yml 
 
+- name: javaの存在確認
+  shell: which java
+  register: java_which
+  failed_when: java_which.rc not in [0, 1]
+
 - name: open JDK
   yum: name=java-1.8.0-openjdk state=latest
 
-- name: set java path
-  shell: echo -e "export JAVA_HOME=$(readlink -e $(which java)|sed 's:/bin/java::')\nPATH=\$PATH:\$JAVA_HOME/bin" | tee /etc/profile.d/java.sh
+#- name: set java path
+#  shell: echo -e "export JAVA_HOME=$(readlink -e $(which java)|sed 's:/bin/java::')\nPATH=\$PATH:\$JAVA_HOME/bin" | tee /etc/profile.d/java.sh

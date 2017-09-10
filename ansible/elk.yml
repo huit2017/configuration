@@ -1,0 +1,10 @@
+---
+# file: elk.yml
+
+- name: Web Server
+  hosts: elk
+  become: yes
+  roles:
+#    - logstash
+#    - elasticsearch
+#    - kibana

@@ -1,0 +1,9 @@
+---
+# file: group_vars/db/main.yml
+
+root_password: root
+repl_user: repl
+repl_password: repl
+db_name: sample1
+db_user: vagrant
+db_password: vagrant

@@ -1,7 +1,6 @@
 ---
 # file: roles/common/tasks/main.yml
 
-- name: upgrade all packages
-  yum: name=name=* state=latest
+- include: magic_vars.yml
+#- include: upgrade.yml
 
-# -include: zabbix.yum 

@@ -1,0 +1,5 @@
+---
+# file: roles/common/tasks/upgrade.yml
+
+- name: upgrade all packages
+  yum: name=* state=latest

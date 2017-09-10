@@ -52,6 +52,10 @@
 - name: create user
   mysql_user: name={{ db_user }} password={{ db_password }} priv="{{ db_name }}.*:ALL,GRANT" state=present
 
+- name: end_play
+  meta: end_play
+  when: ansible_hostname=='dbm' and not server_id is not defined 
+
 - name: create user replication - master
   mysql_user: name={{ repl_user }} password={{ repl_password }} priv="*.*:REPLICATION SLAVE" host=192.168.36.14 state=present
   when: ansible_hostname=='dbm'

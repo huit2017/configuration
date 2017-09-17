@@ -9,3 +9,6 @@
 
 - name: start postfix with auth
   service: name=postfix state=started enabled=yes
+
+# root mail spool 対策をする
+# postfix send auth対応確認

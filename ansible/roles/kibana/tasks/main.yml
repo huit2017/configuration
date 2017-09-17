@@ -1,0 +1,18 @@
+---
+# file: roles/kibana/tasks/main.yml
+
+- name: Add Elasticsearch GPG key.
+  rpm_key: key=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+
+- name: Add Kibana repository.
+  template: src=etc/yum.repos.d/kibana.repo.j2 dest=/etc/yum.repos.d/kibana.repo mode=0644
+
+- name: Install Kibana.
+  package: name=kibana state=present
+
+- name: Ensure Kibana is started and enabled at boot.
+  service: name=kibana state=started enabled=yes
+
+- name: Copy Kibana configuration.
+  template: src=opt/kibana/config/kibana.yml.j2 dest="/opt/kibana/config/kibana.yml" owner=root group=root mode=0644
+  notify: restart kibana

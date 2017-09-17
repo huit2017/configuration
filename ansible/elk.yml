@@ -1,10 +1,17 @@
 ---
 # file: elk.yml
 
-- name: Web Server
+- name: elk Server
   hosts: elk
   become: yes
   roles:
-#    - logstash
-#    - elasticsearch
-#    - kibana
+    - nginx
+    - java
+    - elasticsearch
+    - kibana
+
+- name: fluentd
+  hosts: elk-l
+  become: yes
+  roles:
+    - fluentd 

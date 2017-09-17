@@ -29,3 +29,8 @@ db-s1
 [nosql:children]
 nosql-m
 nosql-s1
+
+[elk-l:children]
+web
+app
+db

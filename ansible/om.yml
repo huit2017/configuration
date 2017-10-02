@@ -1,0 +1,9 @@
+---
+# file: om.yum
+- name: OM Server
+  hosts: om
+  become: yes
+  roles: 
+    - common
+    - java
+    - hinemos

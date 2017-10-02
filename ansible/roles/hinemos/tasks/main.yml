@@ -1,0 +1,55 @@
+---
+# file:roles/hinemos/tasks/main.yml
+
+- name: install manager tools
+  yum: name={{item}} state=latest
+  with_items:
+    - java-1.8.0-openjdk 
+    - java-1.8.0-openjdk-devel
+    - rsyslog
+    - vim-common
+    - unzip
+    - net-snmp-utils
+    - net-tools
+    - sysstat
+    - tcpdump
+    - lsof
+    - sblim-wbemcli
+    - wsmancli
+
+- name: install manager
+  yum: name=https://github.com/hinemos/hinemos/releases/download/v6.0.1/hinemos-6.0-manager-6.0.1-1.el7.x86_64.rpm
+
+- name: install client items
+  yum: name={{item}} state=latest
+  with_items:
+    - vlgothic-p-fonts
+
+- name: install client
+  yum: name=https://github.com/hinemos/hinemos/releases/download/v6.0.1/hinemos-6.0-web-6.0.1-1.el7.x86_64.rpm
+
+- name: install agent items
+  yum: name={{item}} state=latest
+  with_items:
+    - net-snmp
+    - net-snmp-libs
+    - tog-pegasus
+    - sblim-wbemcli
+    - sblim-cmpi-base
+    - sblim-cmpi-fsvol
+    - openlmi-storage
+
+- name: install agent
+  yum: name=https://github.com/hinemos/hinemos/releases/download/v6.0.1/hinemos-6.0-agent-6.0.1-1.el.noarch.rpm
+
+- name: start hinemos_manager and enabled
+  service: name=hinemos_manager state=started enabled=yes
+
+- name: start hinemos_web and enabled
+  service: name=hinemos_web state=started enabled=yes
+
+- name: start hinemos_agent and enabled
+  service: name=hinemos_agent state=started enabled=yes
+
+- name: start snmpd and enabled
+  service: name=snmpd state=started enabled=yes

@@ -1,7 +1,8 @@
 ---
 # file: site.yml
 
-- include: vcs.yml
+- include: om.yml
+#- include: vcs.yml
 #- include: ci.yml
 #- include: mail.yml
 #- include: elk.yml

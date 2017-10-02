@@ -1,0 +1,21 @@
+---
+# file: roles/gitlab/tasks/main.yml
+
+- name: install curl, policycoreutils
+  yum: name={{item}} state=latest
+  with_items:
+    - curl
+    - policycoreutils
+
+- name: download gitlab
+  get_url: url=https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh dest=/tmp/script.rpm.sh
+
+- name: install gitlab
+  command: sh /tmp/script.rpm.sh
+  become: true
+
+- name: install the package
+  yum: name=gitlab-ce state=latest
+
+- name: Configure and start GitLab
+  command: gitlab-ctl reconfigure

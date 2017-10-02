@@ -1,0 +1,9 @@
+---
+# file: vcs.yum
+- name: VCS Server
+  hosts: vcs 
+  become: yes
+  roles: 
+    - common
+    - postfix
+    - gitlab

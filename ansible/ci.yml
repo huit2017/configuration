@@ -1,5 +1,5 @@
 ---
-# file: db.yum
+# file: ci.yum
 - name: CI Server
   hosts: ci
   become: yes

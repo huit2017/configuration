@@ -1,0 +1,14 @@
+---
+# file: roles/jenkins/tasks/main.yml
+
+- name: add Jenkins repo
+  yum_repository: name=jenkins description="jenkins YUM repo" baseurl=http://pkg.jenkins-ci.org/redhat-stable/
+
+- name: add key import
+  rpm_key: key=https://jenkins-ci.org/redhat/jenkins-ci.org.key
+
+- name: install jenkins
+  yum: name=jenkins state=latest
+
+- name: start jenkins and enabled
+  service: name=jenkins state=started enabled=yes

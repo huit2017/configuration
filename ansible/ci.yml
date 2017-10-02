@@ -1,0 +1,11 @@
+---
+# file: db.yum
+- name: CI Server
+  hosts: ci
+  become: yes
+  roles: 
+    - common
+    - java
+    - postfix
+    - jenkins
+    - docker

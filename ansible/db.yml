@@ -4,5 +4,5 @@
   hosts: db
   become: yes
   roles: 
-#    - common
+    - common
     - mysql

@@ -52,33 +52,29 @@
 - name: create user
   mysql_user: name={{ db_user }} password={{ db_password }} priv="{{ db_name }}.*:ALL,GRANT" state=present
 
-- name: end_play
-  meta: end_play
-  when: replication is not defined
-
 - name: create user replication - master
   mysql_user: name={{ repl_user }} password={{ repl_password }} priv="*.*:REPLICATION SLAVE" host={{ replication_slave }} state=present
-  when: replication=='master'
+  when: replication is defined and replication=='master'
 
 - name: stop slave thread
   mysql_replication: mode=stopslave
-  when: replication=='slave'
+  when: replication is defined and replication=='slave'
 
 - name: Get master binlog file name and binlog position
   mysql_replication: mode=getmaster
   delegate_to: "{{ groups['db-m'][0] }}"
   register: master_status
-  when: replication=='slave'
+  when: replication is defined and replication=='slave'
 
 - name: change master to for replication - slave
   mysql_replication: mode=changemaster master_host="{{ groups['db-m'][0] }}" master_log_file={{ master_status.File }} master_log_pos={{ master_status.Position }} master_user={{ repl_user }} master_password={{ repl_password }}
-  when: replication=='slave'
+  when: replication is defined and replication=='slave'
 
 - name: start slave thread
   mysql_replication: mode=startslave
-  when: replication=='slave'
+  when: replication is defined and replication=='slave'
 
 - name: Check slave status using port 3308
   mysql_replication: mode=getslave login_host=localhost login_port=3306
   register: slave_status
-  when: replication=='slave'
+  when: replication is defined and replication=='slave'

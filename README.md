@@ -15,14 +15,16 @@
   ```
 
 ## Jenkins
-  1. Jenkins > 設定 # Jenkinsの位置 - システム管理者のメールアドレス: Jenkis Admin <jenkins_admin@xxx.xx.xx>
+  1. Jenkins > 設定
+    - Jenkinsの位置
+      - システム管理者のメールアドレス: Jenkis Admin <jenkins_admin@xxx.xx.xx>
   1. jenkins > プラグインマネージャー
-    1. Git plugin
-    1. Pipeline
-    1. Locale plugin
-    1. Cobertura Plugin
-    1. Checkstyle Plug-in
-    1. SSH Slaves plugin
-    1. FindBugs Plug-in
-    1. GitHub Pull Request Builder
-    1. Docker Plugin 
+    - Git plugin
+    - Pipeline
+    - Locale plugin
+    - Cobertura Plugin
+    - Checkstyle Plug-in
+    - SSH Slaves plugin
+    - FindBugs Plug-in
+    - GitHub Pull Request Builder
+    - Docker Plugin 

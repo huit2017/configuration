@@ -11,6 +11,7 @@
   ```
 
   ### 公開鍵をコピーする
+
   ```
   ssh-copy-id [HOST]
   ```
@@ -18,14 +19,17 @@
 ## Jenkins
   ### Jenkins > 設定
   #### Jenkinsの位置
-      #### システム管理者のメールアドレス: Jenkis Admin <jenkins_admin@xxx.xx.xx>
+  #### システム管理者のメールアドレス: Jenkis Admin <jenkins_admin@xxx.xx.xx>
   ### Jenkins > プラグインマネージャー
-    - Git plugin
-    - Pipeline
-    - Locale plugin
-    - Cobertura Plugin
-    - Checkstyle Plug-in
-    - SSH Slaves plugin
-    - FindBugs Plug-in
-    - GitHub Pull Request Builder
-    - Docker Plugin 
+
+  ```
+  Git plugin
+  Pipeline
+  Locale plugin
+  Cobertura Plugin
+  Checkstyle Plug-in
+  SSH Slaves plugin
+  FindBugs Plug-in
+  GitHub Pull Request Builder
+  Docker Plugin 
+  ```

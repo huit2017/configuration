@@ -1,6 +1,6 @@
 ---
 # file: roles/common/tasks/main.yml
 
+- include: upgrade.yml
 #- include: magic_vars.yml
-#- include: upgrade.yml
 

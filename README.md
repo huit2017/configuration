@@ -47,4 +47,5 @@
   GitHub Pull Request Builder
   Docker Plugin 
   Slack Notifier Plugin
+  Blue Ocean
   ```

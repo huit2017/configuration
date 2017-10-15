@@ -5,6 +5,7 @@
 - include: elk.yml
 - include: vcs.yml
 - include: ci.yml
+- include: ci-s.yml
 - include: mail.yml
 - include: web.yml
 - include: app.yml

@@ -1,6 +1,6 @@
 ---
 # file: ci.yum
-- name: CI Server
+- name: CI Server - Slave
   hosts: ci-slave
   become: yes
   roles: 

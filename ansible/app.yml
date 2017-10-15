@@ -6,4 +6,4 @@
   become: yes
   roles:
     - java
-#    - tomcat
+    - tomcat

@@ -1,0 +1,8 @@
+---
+# roles/tomcat/defaults/main.yml
+
+version: 8.0.47
+download_url: http://ftp.riken.jp/net/apache/tomcat/tomcat-8/v{{ version }}/bin/apache-tomcat-{{ version }}.tar.gz
+
+#version: 8.5.23
+#download_url: http://ftp.meisei-u.ac.jp/mirror/apache/dist/tomcat/tomcat-8/v{{ version }}/bin/apache-tomcat-{{ version }}.tar.gz

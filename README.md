@@ -19,8 +19,14 @@
 ## Jenkins
   ### Jenkins > 設定
   #### Jenkinsの位置
+
   ```
   システム管理者のメールアドレス: Jenkis Admin <jenkins_admin@xxx.xx.xx>
+  ```
+
+  #### クラウド
+  ```
+  Docker
   ```
   ### Jenkins > プラグインマネージャー
 

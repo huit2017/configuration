@@ -28,6 +28,12 @@
   ```
   Docker
   ```
+
+  ### Global Slack Notifier Settings
+  ```
+  Base URL:
+  Integration Token
+  ```
   ### Jenkins > プラグインマネージャー
 
   ```
@@ -40,4 +46,5 @@
   FindBugs Plug-in
   GitHub Pull Request Builder
   Docker Plugin 
+  Slack Notifier Plugin
   ```

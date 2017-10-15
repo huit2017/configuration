@@ -22,3 +22,20 @@
 
 - name: start docker and enabled
   service: name=docker state=started enabled=yes
+
+- name: add docker yum repo
+  yum_repository:
+    name: dockerrepo
+    description: Docker Repository
+    baseurl: https://yum.dockerproject.org/repo/main/centos/$releasever/
+    enabled: yes
+    gpgkey: https://yum.dockerproject.org/gpg
+    gpgcheck: yes
+  tags: dockerhost
+
+- name: install docker-python
+  yum: name=docker-python enablerepo=dockerrepo state=latest
+  tags: dockerhost
+
+- name: pull image
+  docker_image: name=huit/jenkins-maven

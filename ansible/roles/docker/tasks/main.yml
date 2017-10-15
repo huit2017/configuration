@@ -38,4 +38,7 @@
   tags: dockerhost
 
 - name: pull image
-  docker_image: name=huit/jenkins-maven
+  docker_image: name={{item}}
+  with_items:
+    - huit/jenkins-maven
+    - huit/jenkins-ansible

@@ -34,3 +34,7 @@ nosql-s1
 web
 app
 db
+
+[all:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant

@@ -10,6 +10,7 @@ pipeline {
         }
         stage('configuration - ansible') {
             steps {
+                sh 'ansible -i mail ansible/production -m ping'
                 sh 'ansible-playbook -i ansible/production ansible/site.yml'
             }
         }

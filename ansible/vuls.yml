@@ -1,0 +1,9 @@
+---
+# file: vuls.yum
+
+- name: Vuls
+  hosts: vuls
+  roles: 
+    - common
+    - golang
+    - vuls

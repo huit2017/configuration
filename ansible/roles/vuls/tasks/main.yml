@@ -1,0 +1,101 @@
+---
+# file: roles/vuls/tasks/main.yml
+
+- name: 2.Install requirements
+  yum: name={{item}} state=latest
+  with_items:
+    - sqlite
+    - git
+    - gcc
+    - make
+    - wget
+    - yum-utils
+  become: yes
+
+- name: 3.Deploy go-cve-dictionary
+  shell: which go-cve-dictionary
+  register: go_cve_dictionary
+  environment:
+    PATH: "{{ path }}"
+  ignore_errors: true
+
+- name: mkdir vuls
+  file: path=/var/log/vuls state=directory mode=0700 owner={{ ansible_ssh_user }}
+  become: yes
+
+- name: mkdir kotakanbe 
+  file: path={{ gopath }}/src/github.com/kotakanbe state=directory
+
+- name: git clone go-cve-dictionary
+  git: repo=https://github.com/kotakanbe/go-cve-dictionary.git dest={{gopath}}/src/github.com/kotakanbe/go-cve-dictionary version=master accept_hostkey=yes
+  when: go_cve_dictionary.rc not in [0, 1]
+
+- name: make install go-cve-dictionary
+  make: target=install chdir={{gopath}}/src/github.com/kotakanbe/go-cve-dictionary
+  environment:
+    PATH: "{{ path }}"
+  when: go_cve_dictionary.rc not in [0, 1]
+
+- name: get cve dictionary - nvd
+  shell: for i in `seq 2002 $(date +"%Y")`; do go-cve-dictionary fetchnvd -years $i; done chdir={{ home }}
+  when: go_cve_dictionary.rc not in [0, 1]
+
+- name: get cve dictionary - ja
+  shell: for i in `seq 1998 $(date +"%Y")`; do go-cve-dictionary fetchjvn -years $i; done chdir={{ home }}
+  when: go_cve_dictionary.rc not in [0, 1]
+
+- name: 4.Deploy goval-dictionary
+  shell: which goval-dictionary
+  register: goval_dictionary
+  environment:
+    PATH: "{{ path }}"
+  ignore_errors: true
+
+- name: mkdir kotakanbe
+  file: path={{ gopath }}/src/github.com/kotakanbe state=directory
+
+- name: git clone goval-dictionary
+  git: repo=https://github.com/kotakanbe/goval-dictionary.git dest={{ gopath }}/src/github.com/kotakanbe/goval-dictionary version=master accept_hostkey=yes
+  when: goval_dictionary.rc not in [0, 1]
+
+- name: make install goval-dictionary
+  make: target=install chdir={{ gopath }}/src/github.com/kotakanbe/goval-dictionary
+  when: goval_dictionary.rc not in [0, 1]
+
+- name: get cve dictionary - ja
+  shell: goval-dictionary fetch-redhat 7
+  when: goval_dictionary.rc not in [0, 1]
+
+- name: 5.Deploy Vuls
+  shell: which vuls
+  register: vuls 
+  environment:
+    PATH: "{{ path }}"
+  ignore_errors: true
+
+- name: mkidr future-architect
+  file: path={{ gopath }}/src/github.com/future-architect state=directory
+  when: vuls.rc not in [0, 1]
+
+- name: git clone vuls
+  git: repo=https://github.com/future-architect/vuls.git dest={{ gopath }}/src/github.com/future-architect/vuls version=master accept_hostkey=yes
+  when: vuls.rc not in [0, 1]
+
+- name: make install vuls
+  make: target=install chdir={{ gopath }}/src/github.com/future-architect/vuls
+  when: vuls.rc not in [0, 1]
+
+- name: 6.Config
+  template: src=config.toml.j2 dest={{ home }}/config.toml
+
+- name: git clone vulsrepo
+  git: repo=https://github.com/usiusi360/vulsrepo.git dest={{ home }}/vulsrepo version=master accept_hostkey=yes
+
+- name: 1.Create a json report of vuls
+  shell: vuls scan && vuls report -format-json
+
+- name: create ~/vulsrepo/server/vulsrepo-config.toml
+  template: src=vulsrepo/server/vulsrepo-config.toml.j2 dest={{ home }}/vulsrepo/server/vulsrepo-config.toml 
+
+- name: 4.Start vulsrepo-server
+  shell: ./vulsrepo-server chdir={{ home }}/vulsrepo/server

@@ -1,0 +1,33 @@
+---
+# file: roles/golang/tasks/main.yml
+
+- name: install tool
+  yum: name={{ item }} state=latest
+  with_items:
+    - gcc
+    - make
+    - wget
+  become: yes
+
+- name: check go version
+  shell: go version
+  register: goversion
+  environment:
+    PATH: "{{ goroot }}/bin"
+  ignore_errors: true
+
+- name: download golang
+  get_url: url=https://storage.googleapis.com/golang/{{ goarchive }} dest={{ home }}/{{ goarchive }}
+  when: goversion.rc not in [0, 1]
+
+- name: tar go lang
+  unarchive: src={{ home }}/{{ goarchive }} dest=/usr/local remote_src=yes
+  when: goversion.rc not in [0, 1]
+  become: yes
+
+- name: mkdir ~/go
+  file: path={{ gopath }} state=directory
+
+- name: create /etc/profile.d/goenv.sh
+  copy: src=etc/profile.d/goenv.sh dest=/etc/profile.d/goenv.sh owner=root group=root mode=644
+  become: yes

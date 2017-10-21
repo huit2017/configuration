@@ -1,0 +1,8 @@
+---
+# roles/common/tasks/lookup.yml
+
+- name: pipe path
+  debug: msg="{{ lookup('pipe', 'echo $PATH') }}"
+
+- name: env path
+  debug: msg="{{ lookup('env', 'PATH') }}"

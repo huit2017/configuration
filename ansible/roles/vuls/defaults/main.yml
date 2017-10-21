@@ -1,0 +1,8 @@
+---
+# roles/golang/defaults/main.yml
+
+home: "/home/{{ ansible_ssh_user }}"
+goarchive: go1.8.3.linux-amd64.tar.gz
+goroot: /usr/local/go
+gopath: "{{ home }}/go"
+path: "{{ lookup('env', 'PATH') }}:{{ goroot }}/bin:{{ gopath }}/bin"

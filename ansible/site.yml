@@ -1,15 +1,15 @@
 ---
 # file: site.yml
 
-- include: om.yml
-- include: elk.yml
-- include: vuls.yml
-- include: vcs.yml
-- include: ci.yml
-- include: ci-s.yml
-- include: mail.yml
+#- include: om.yml
+#- include: elk.yml
+#- include: vuls.yml
+#- include: vcs.yml
+#- include: ci.yml
+#- include: ci-s.yml
+#- include: mail.yml
 - include: web.yml
-- include: app.yml
-- include: db.yml
-- include: nosql.yml
+#- include: app.yml
+#- include: db.yml
+#- include: nosql.yml
 

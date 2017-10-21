@@ -98,4 +98,4 @@
   template: src=vulsrepo/server/vulsrepo-config.toml.j2 dest={{ home }}/vulsrepo/server/vulsrepo-config.toml 
 
 - name: 4.Start vulsrepo-server
-  shell: ./vulsrepo-server chdir={{ home }}/vulsrepo/server
+  shell: "{{ home }}/vulsrepo/server/vulsrepo-server &"

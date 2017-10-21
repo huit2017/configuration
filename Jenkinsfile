@@ -13,10 +13,18 @@ pipeline {
                 sh 'ansible-playbook -i ansible/production ansible/site.yml'
             }
         }
-        stage('notifications - slack') {
+        stage('test - serverspec') {
             steps {
-                slackSend channel: "#renshu", message: "Build End: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+                sh 'cd serverspec && rake spec'
             }
+        }
+    }
+    post {
+        success {
+            slackSend channel: "#renshu", message: "Build success: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+        }
+        failure {
+            slackSend channel: "#renshu", message: "Build failure: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
         }
     }
 }

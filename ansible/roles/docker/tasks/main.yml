@@ -41,4 +41,4 @@
   docker_image: name={{item}}
   with_items:
     - huit/jenkins-maven
-    - huit/jenkins-ansible
+    - huit/jenkins-iac

@@ -48,4 +48,7 @@
   Docker Plugin 
   Slack Notifier Plugin
   Blue Ocean
+  JaCoCo plugin
+  JUnit Attachments Plugin
+  Selenium Plugin
   ```

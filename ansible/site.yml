@@ -8,8 +8,8 @@
 #- include: ci.yml
 #- include: ci-s.yml
 #- include: mail.yml
-- include: web.yml
-#- include: app.yml
+#- include: web.yml
+- include: app.yml
 #- include: db.yml
 #- include: nosql.yml
 

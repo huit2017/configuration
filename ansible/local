@@ -1,20 +1,20 @@
 [mail]
-127.0.0.1
+localhost
 
 [elk]
-127.0.0.1
+localhost
 
 [web]
-127.0.0.1
+localhost
 
 [app]
-127.0.0.1
+localhost
 
 [db-m]
-127.0.0.1 server_id=1
+localhost server_id=1
 
 [nosql-m]
-127.0.0.1
+localhost
 
 [db:children]
 db-m

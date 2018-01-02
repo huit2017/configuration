@@ -1,26 +1,26 @@
 [mail]
-192.168.33.10
+192.168.32.10
 
 [web]
-192.168.33.11
+192.168.32.11
 
 [app]
-192.168.33.12
+192.168.32.12
 
 [batch]
-192.168.33.13
+192.168.32.13
 
 [db-m]
-192.168.33.14 server_id=13 replication=master replication_slave=192.168.33.15
+192.168.32.14 server_id=13 replication=master replication_slave=192.168.33.15
 
 [db-s1]
-192.168.33.15 server_id=14 replication=slave
+192.168.32.15 server_id=14 replication=slave
 
 [nosql-m]
-192.168.33.16
+192.168.32.16
 
 [nosql-s1]
-192.168.33.17
+192.168.32.17
 
 [db:children]
 db-m
